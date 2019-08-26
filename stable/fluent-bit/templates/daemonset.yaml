@@ -113,6 +113,11 @@ spec:
           mountPath: /secure/es-tls-ca.crt
           subPath: {{ .Values.backend.es.tls_secret_ca_key | default "es-tls-ca.crt" | quote }}
 {{- end }}
+{{- if or .Values.backend.http.tls_ca .Values.backend.http.tls_secret }}
+        - name: http-tls-secret
+          mountPath: /secure/http-tls-ca.crt
+          subPath: {{ .Values.backend.http.tls_secret_ca_key | default "http-tls-ca.crt" | quote }}
+{{- end }}
 {{- if .Values.trackOffsets }}
         - name: tail-db
           mountPath: /tail-db
@@ -155,6 +160,11 @@ spec:
       - name: es-tls-secret
         secret:
           secretName: {{ .Values.backend.es.tls_secret | default ( print ( include "fluent-bit.fullname" . ) "-es-tls-secret" ) | quote }}
+{{- end }}
+{{- if or .Values.backend.http.tls_ca .Values.backend.http.tls_secret }}
+      - name: http-tls-secret
+        secret:
+          secretName: {{ .Values.backend.http.tls_secret | default ( print ( include "fluent-bit.fullname" . ) "-http-tls-secret" ) | quote }}
 {{- end }}
 {{- if .Values.trackOffsets }}
       - name: tail-db

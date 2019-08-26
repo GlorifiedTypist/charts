@@ -43,7 +43,7 @@ trackOffsets: false
 priorityClassName: ""
 
 backend:
-  type: forward
+  type: http
   forward:
     host: fluentd
     port: 24284
@@ -93,6 +93,9 @@ backend:
     tls: "off"
     tls_verify: "on"
     tls_debug: 1
+    # TLS certificate for HTTP endpoint (in PEM format). Use if tls=on and tls_verify=on.
+    tls_ca: "test"
+    tls_secret: ""
     ## Specify the data format to be used in the HTTP request body
     ## Can be either 'msgpack' or 'json'
     format: msgpack

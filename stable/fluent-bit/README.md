@@ -66,6 +66,7 @@ The following table lists the configurable parameters of the Fluent-Bit chart an
 | `backend.http.headers`          | HTTP Headers | `[]` |
 | `backend.http.tls`              | Enable or disable TLS support | `off` |
 | `backend.http.tls_verify`       | Force certificate validation  | `on` |
+| `backend.http.tls_ca`           | TLS CA certificate for the HTTP endpoint (in PEM format). | `` |
 | `backend.http.tls_debug`        | Set TLS debug verbosity level. It accept the following values: 0-4 | `1` |
 | **Splunk Backend**              |
 | `backend.splunk.host`           | IP address or hostname of the target Splunk Server | `127.0.0.1` |
